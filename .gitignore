@@ -1,0 +1,4 @@
+# Modelos y binarios pesados de llamafile (no versionar)
+*.llamafile
+llamafile-*
+*.gguf

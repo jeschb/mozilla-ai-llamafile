@@ -54,18 +54,72 @@ Estos son los recursos detectados y validados en esta máquina:
 ## 2. Modelos recomendados para este entorno
 
 Todos los modelos listados pertenecen a la familia **Qwen3.5** (licencia Apache 2.0),
-son **multimodales** (admiten imágenes con el comando `/upload` desde el chat) y
-están disponibles en [`mozilla-ai/llamafile_0.10`](https://huggingface.co/mozilla-ai/llamafile_0.10).
+son **multimodales** (admiten imágenes con el comando `/upload` desde el chat o
+`--image` en modo CLI) y están disponibles en
+[`mozilla-ai/llamafile_0.10`](https://huggingface.co/mozilla-ai/llamafile_0.10).
 
-| Modelo | Tamaño | RAM aprox. | Velocidad (sin AVX2) | Calidad | Uso recomendado |
-|---|---|---|---|---|---|
-| **`Qwen3.5-0.8B-Q8_0.llamafile`** | 1,23 GB | ~1,5–2 GB | **Más rápido** | Suficiente para uso general | **Recomendado para este entorno** |
-| **`Qwen3.5-2B-Q8_0.llamafile`** | 2,89 GB | ~3–4 GB | Rápido | Buena | Buen equilibrio si el 0,8B se queda corto |
-| **`Qwen3.5-4B-Q5_K_S.llamafile`** | 3,91 GB | ~4–5 GB | Medio-lento | Muy buena | Más preciso, pero más lento |
-| **`Qwen3.5-9B-Q5_K_S.llamafile`** | 7,49 GB | ~7–8 GB | **Más lento** | Óptima | Solo si necesitas máxima calidad y tienes paciencia |
+| Modelo | Tipo / para qué sirve | Tamaño | RAM aprox. | Velocidad (sin AVX2) | Calidad | Uso recomendado |
+|---|---|---|---|---|---|---|
+| **`Qwen3.5-0.8B-Q8_0.llamafile`** | Texto **+ imágenes** (multimodal) | 1,23 GB | ~1,5–2 GB | **Más rápido** | Suficiente para uso general | **Recomendado para este entorno** |
+| **`Qwen3.5-2B-Q8_0.llamafile`** | Texto **+ imágenes** (multimodal) | 2,89 GB | ~3–4 GB | Rápido | Buena | Buen equilibrio si el 0,8B se queda corto |
+| **`Qwen3.5-4B-Q5_K_S.llamafile`** | Texto **+ imágenes** (multimodal) | 3,91 GB | ~4–5 GB | Medio-lento | Muy buena | Más preciso, pero más lento |
+| **`Qwen3.5-9B-Q5_K_S.llamafile`** | Texto **+ imágenes** (multimodal) | 7,49 GB | ~7–8 GB | **Más lento** | Óptima | Solo si necesitas máxima calidad y tienes paciencia |
+
+> **¿Qué significa "multimodal" aquí?** Estos modelos **analizan** imágenes (les
+> haces preguntas sobre una foto), pero **no generan** imágenes. Para entrada de
+> imágenes usa `/upload ruta/imagen.jpg` dentro del chat, o `--image ruta/imagen.jpg`
+> en modo CLI.
 
 **Mi recomendación personal para esta máquina:** empezar con **Qwen3.5-0.8B-Q8_0**.
 Si con el tiempo notas que las respuestas se quedan cortas, sube al **2B**.
+
+---
+
+## 2.b Catálogo completo de modelos pre-construidos (v0.10.\*)
+
+El listado **oficial y completo** de modelos accesibles (llamafiles ya empaquetados,
+listos para usar) está en:
+
+**<https://docs.mozilla.ai/llamafile/getting-started/pre-built-llamafiles>**
+
+Todos estos llamafiles incluyen la **última versión del servidor (v0.10.\*)**. A
+grandes rasgos: **cuanto más pequeño es el archivo, más fácil será ejecutarlo**,
+incluso sin GPU. La columna **Tipo** resume para qué sirve cada modelo.
+
+| Modelo | Tamaño | Tipo / para qué sirve | Licencia | Descarga |
+|---|---|---|---|---|
+| Qwen3.5 0.8B Q8_0 | 1,6 GB | Texto + imágenes | Apache 2.0 | [.llamafile](https://huggingface.co/mozilla-ai/llamafile_0.10/resolve/main/Qwen3.5-0.8B-Q8_0.llamafile) |
+| Qwen3.5 2B Q8_0 | 3,2 GB | Texto + imágenes | Apache 2.0 | [.llamafile](https://huggingface.co/mozilla-ai/llamafile_0.10/resolve/main/Qwen3.5-2B-Q8_0.llamafile) |
+| Ministral 3 3B Instruct 2512 Q4_K_M | 3,4 GB | Texto + imágenes | Apache 2.0 | [.llamafile](https://huggingface.co/mozilla-ai/llamafile_0.10/resolve/main/Ministral-3-3B-Instruct-2512-Q4_K_M.llamafile) |
+| Qwen3.5 4B Q5_K_S | 4,1 GB | Texto + imágenes | Apache 2.0 | [.llamafile](https://huggingface.co/mozilla-ai/llamafile_0.10/resolve/main/Qwen3.5-4B-Q5_K_S.llamafile) |
+| llava v1.6 mistral 7b Q4_K_M | 5,3 GB | Texto + imágenes (visión) | Apache 2.0 | [.llamafile](https://huggingface.co/mozilla-ai/llamafile_0.10/resolve/main/llava-v1.6-mistral-7b-Q4_K_M.llamafile) |
+| Apertus 8B Instruct 2509 | 5,9 GB | Solo texto | Apache 2.0 | [.llamafile](https://huggingface.co/mozilla-ai/llamafile_0.10/resolve/main/Apertus-8B-Instruct-2509.llamafile) |
+| Qwen3.5 9B Q5_K_S | 7,4 GB | Texto + imágenes | Apache 2.0 | [.llamafile](https://huggingface.co/mozilla-ai/llamafile_0.10/resolve/main/Qwen3.5-9B-Q5_K_S.llamafile) |
+| Ministral 3 3B Instruct 2512 BF16 | 7,8 GB | Texto + imágenes | Apache 2.0 | [.llamafile](https://huggingface.co/mozilla-ai/llamafile_0.10/resolve/main/Ministral-3-3B-Instruct-2512-BF16.llamafile) |
+| llava v1.6 mistral 7b Q8_0 | 8,4 GB | Texto + imágenes (visión) | Apache 2.0 | [.llamafile](https://huggingface.co/mozilla-ai/llamafile_0.10/resolve/main/llava-v1.6-mistral-7b-Q8_0.llamafile) |
+| gpt-oss 20b mxfp4 | 12 GB | Solo texto (razonamiento) | Apache 2.0 | [.llamafile](https://huggingface.co/mozilla-ai/llamafile_0.10/resolve/main/gpt-oss-20b-mxfp4.llamafile) |
+| gpt-oss 20b Q5_K_S | 12 GB | Solo texto (razonamiento) | Apache 2.0 | [.llamafile](https://huggingface.co/mozilla-ai/llamafile_0.10/resolve/main/gpt-oss-20b-Q5_K_S.llamafile) |
+| LFM2 24B A2B Q5_K_M | 16 GB | Solo texto | lfm1.0 | [.llamafile](https://huggingface.co/mozilla-ai/llamafile_0.10/resolve/main/LFM2-24B-A2B-Q5_K_M.llamafile) |
+| Qwen3.5 27B Q5_K_S | 19 GB | Texto + imágenes | Apache 2.0 | [.llamafile](https://huggingface.co/mozilla-ai/llamafile_0.10/resolve/main/Qwen3.5-27B-Q5_K_S.llamafile) |
+
+**Cómo interpretar este catálogo:**
+
+- **Texto + imágenes:** responden preguntas escritas y también **analizan** imágenes
+  (no las generan). Es el caso de toda la familia **Qwen3.5**, **Ministral 3 3B** y
+  **llava v1.6 mistral 7b**.
+- **Solo texto:** buenos para chat, redacción y razonamiento, sin entrada de imágenes
+  (Apertus 8B, gpt-oss 20b, LFM2 24B A2B).
+- **gpt-oss 20b** destaca en **razonamiento** (es un modelo tipo "thinking"), pero
+  necesita ~12 GB y bastante RAM/tiempo en CPU.
+- **Ninguno de estos modelos crea imágenes.** Aquí solo hay modelos de lenguaje; la
+  generación de imágenes no forma parte de este catálogo.
+- Los **tamaños** son los publicados en la documentación oficial y pueden diferir
+  ligeramente del archivo descargado (los archivos ya presentes en este equipo,
+  p. ej. el 0,8B, pesan algo menos). La **licencia** determina qué puedes hacer con
+  el modelo.
+
+> Para descargar cualquiera de ellos basta con sustituir el nombre del archivo en:
+> `https://huggingface.co/mozilla-ai/llamafile_0.10/resolve/main/<NOMBRE_ARCHIVO>`
 
 ---
 
@@ -392,7 +446,8 @@ la **interfaz web** visualmente.
 
 - **Repositorio GitHub:** [github.com/mozilla-ai/llamafile](https://github.com/mozilla-ai/llamafile)
 - **Documentación oficial:** [docs.mozilla.ai/llamafile](https://docs.mozilla.ai/llamafile)
-- **Modelos pre-construidos:** [huggingface.co/mozilla-ai/llamafile_0.10](https://huggingface.co/mozilla-ai/llamafile_0.10)
+- **Catálogo de modelos pre-construidos (lista completa):** [docs.mozilla.ai/llamafile/getting-started/pre-built-llamafiles](https://docs.mozilla.ai/llamafile/getting-started/pre-built-llamafiles)
+- **Modelos pre-construidos (descargas):** [huggingface.co/mozilla-ai/llamafile_0.10](https://huggingface.co/mozilla-ai/llamafile_0.10)
 - **Releases llamafile:** [github.com/mozilla-ai/llamafile/releases](https://github.com/mozilla-ai/llamafile/releases)
 - **llama.cpp:** [github.com/ggml-org/llama.cpp](https://github.com/ggml-org/llama.cpp)
 
